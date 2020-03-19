@@ -1,0 +1,16 @@
+<mat-toolbar>
+    <span>{{ race.name }}</span>
+</mat-toolbar>
+
+<adi-poney 
+    *ngFor="let poney of ponies | isRacing:race.poneyIds; let i = index"
+    (win)="handleWin($event)"
+    [poney]="poney"
+    adiRainbow="lavender"
+    [isColored]="!(i % 2)"
+    #poneyChildren
+></adi-poney>
+
+<pre>
+    {{ ponies | json }}
+</pre>

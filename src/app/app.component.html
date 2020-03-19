@@ -1,10 +1,15 @@
-<h1>Bonjour {{ title }}</h1>
+<mat-toolbar>
+    <h1>Bonjour {{ title | uppercase }}</h1>
+</mat-toolbar>
 
-<adi-poney 
-    *ngFor="let poney of ponies; let i = index"
-    (win)="handleWin($event)"
-    [poney]="poney"
-    adiRainbow="lavender"
-    [isColored]="!(i % 2)"
-    #poneyChildren
-></adi-poney>
+<button routerLink="/race-list" mat-raised-button>
+    Race List
+</button>
+<button routerLink="/race-create" mat-raised-button>
+    Create Race
+</button>
+<button routerLink="/poney-create" mat-raised-button>
+    Create Poney
+</button>
+
+<router-outlet></router-outlet>

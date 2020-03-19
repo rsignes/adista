@@ -1,6 +1,6 @@
-import { Component, ViewEncapsulation, ViewChildren, QueryList } from '@angular/core';
-import { Poney } from './interfaces/poney';
-import { PoneyComponent } from './components/poney/poney.component';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { Race } from './interfaces/race';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -11,33 +11,11 @@ import { PoneyComponent } from './components/poney/poney.component';
 export class AppComponent {
   title: string = 'adista';
 
-  @ViewChildren('poneyChildren') poneyChildren: QueryList<PoneyComponent>
+  races: Race[] = []
 
-  handleWin(poney: Poney) {
-    console.log('WINNER : ', poney.name)
-    this.poneyChildren.forEach((poneyComponent: PoneyComponent) => {
-      poneyComponent.stopRunning()
-    })
+  constructor(private dataService: DataService) {}
+
+  ngOnInit() {
+    this.races = this.dataService.races
   }
-
-  ponies: Poney[] = [
-    {
-      id: '0',
-      name: 'Romain',
-      img: 'http://ponyracer.ninja-squad.com/assets/images/pony-blue-running.gif',
-      distance: 0
-    },
-    {
-      id: '1',
-      name: 'Yohan',
-      img: 'http://ponyracer.ninja-squad.com/assets/images/pony-orange-running.gif',
-      distance: 0
-    },
-    {
-      id: '2',
-      name: 'Liam',
-      img: 'http://ponyracer.ninja-squad.com/assets/images/pony-green-running.gif',
-      distance: 0
-    }
-  ]
 }

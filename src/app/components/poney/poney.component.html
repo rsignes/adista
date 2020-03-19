@@ -1,6 +1,8 @@
 <!-- <div class="container" [ngStyle]="{left: poney.distance + '%'}"> -->
-<div class="container" [style.left]="poney.distance + '%'">
+<div class="container" [style.left]="poney.distance | unit">
     <strong (click)="handleClick($event)">{{ poney.name }}</strong>
-    <em> {{ poney.distance }}m</em>
+    <mat-card>
+        <em> {{ poney.distance }}m</em>
+    </mat-card>
     <img [src]="poney.img">
 </div>
