@@ -2,11 +2,13 @@ $poney_width: 10%;
 
 :host {
     display: block;
+    user-select: none;
 
     .container {
         width: $poney_width;
         position: relative;
         left: 0;
+        transition: left 1s linear;
     
         img {
             width: 100%;

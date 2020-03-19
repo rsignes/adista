@@ -1,5 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChildren, QueryList } from '@angular/core';
 import { Poney } from './interfaces/poney';
+import { PoneyComponent } from './components/poney/poney.component';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,13 @@ import { Poney } from './interfaces/poney';
 export class AppComponent {
   title: string = 'adista';
 
+  @ViewChildren('poneyChildren') poneyChildren: QueryList<PoneyComponent>
+
   handleWin(poney: Poney) {
     console.log('WINNER : ', poney.name)
+    this.poneyChildren.forEach((poneyComponent: PoneyComponent) => {
+      poneyComponent.stopRunning()
+    })
   }
 
   ponies: Poney[] = [
