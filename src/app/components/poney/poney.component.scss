@@ -1,0 +1,15 @@
+$poney_width: 10%;
+
+:host {
+    display: block;
+
+    .container {
+        width: $poney_width;
+        position: relative;
+        left: 0;
+    
+        img {
+            width: 100%;
+        }
+    }
+}

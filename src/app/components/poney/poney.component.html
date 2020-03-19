@@ -1,0 +1,6 @@
+<!-- <div class="container" [ngStyle]="{left: poney.distance + '%'}"> -->
+<div class="container" [style.left]="poney.distance + '%'">
+    <strong (click)="handleClick($event)">{{ poney.name }}</strong>
+    <em> {{ poney.distance }}m</em>
+    <img [src]="poney.img">
+</div>
