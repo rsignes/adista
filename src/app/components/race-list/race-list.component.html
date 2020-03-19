@@ -1,1 +1,9 @@
-<p>race-list works!</p>
+<mat-toolbar>
+    <span>Race List</span>
+</mat-toolbar>
+
+<mat-nav-list>
+    <mat-list-item *ngFor="let race of races" [routerLink]="['/race', race.id]">
+        {{ race.name }}
+    </mat-list-item>
+</mat-nav-list>

@@ -1,6 +1,4 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Race } from './interfaces/race';
-import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +8,4 @@ import { DataService } from './services/data.service';
 })
 export class AppComponent {
   title: string = 'adista';
-
-  races: Race[] = []
-
-  constructor(private dataService: DataService) {}
-
-  ngOnInit() {
-    this.races = this.dataService.races
-  }
 }

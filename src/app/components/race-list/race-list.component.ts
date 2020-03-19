@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Race } from 'src/app/interfaces/race';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'adi-race-list',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RaceListComponent implements OnInit {
 
-  constructor() { }
+  races: Race[] = []
 
-  ngOnInit(): void {
+  constructor(private dataService: DataService) {}
+
+  ngOnInit() {
+    this.races = this.dataService.races
   }
 
 }

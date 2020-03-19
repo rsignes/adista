@@ -10,7 +10,7 @@ export const APP_ROUTES: Routes = [
         component: RaceListComponent
     },
     {
-        path: 'race',
+        path: 'race/:id',
         component: RaceComponent
     },
     {
