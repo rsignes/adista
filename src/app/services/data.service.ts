@@ -42,6 +42,12 @@ export class DataService {
     }))
   }
 
+  savePoney(poney: Poney): Observable<Poney> {
+    return this.http.post<Poney>('http://localhost:3000/ponies', poney).pipe(tap(poney => {
+      this._ponies = []
+    }))
+  }
+
   private _ponies: Poney[] = []
 
   private _races: Race[] = []

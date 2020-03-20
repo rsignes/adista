@@ -1,0 +1,18 @@
+form {
+    width: 50%;
+    max-width: 300px;
+    text-align: center;
+    margin: 20px auto;
+
+    mat-form-field {
+        width: 100%;
+    }
+
+    &.ng-valid {
+        border: solid 1px green;
+    }
+
+    input.ng-invalid.ng-touched {
+        border: solid 1px red;
+    }
+}
