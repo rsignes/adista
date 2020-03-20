@@ -48,6 +48,14 @@ export class DataService {
     }))
   }
 
+  getPoniesByName(name: string): Observable<Poney[]> {
+    return this.http.get<Poney[]>('http://localhost:3000/ponies', {
+      params: {
+        name
+      }
+    })
+  }
+
   private _ponies: Poney[] = []
 
   private _races: Race[] = []
