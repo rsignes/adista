@@ -12,10 +12,13 @@ export class PoneyComponent {
   @Output() win: EventEmitter<Poney> = new EventEmitter()
   intervalId: any
 
-  constructor() { }
-
   ngOnInit(): void {
     this.run()
+  }
+
+  ngOnDestroy() {
+    this.poney.distance = 0
+    this.stopRunning()
   }
 
   handleClick(event: any) {

@@ -1,8 +1,9 @@
-import { Component, ViewChildren, QueryList, Input } from '@angular/core';
+import { Component, ViewChildren, QueryList } from '@angular/core';
 import { Poney } from '../../interfaces/poney';
 import { PoneyComponent } from '../poney/poney.component';
 import { Race } from 'src/app/interfaces/race';
 import { DataService } from 'src/app/services/data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'adi-race',
@@ -11,9 +12,19 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class RaceComponent {
 
-  @Input() race: Race
-
+  race: Race
+  ponies: Poney[] = []
   @ViewChildren('poneyChildren') poneyChildren: QueryList<PoneyComponent>
+
+  ngOnInit() {
+    this.ponies = this.dataService.ponies
+
+    this.route.params.subscribe({
+      next: params => {
+        this.race = this.dataService.getRaceById(params.id)
+      }
+    })
+  }
 
   handleWin(poney: Poney) {
     console.log('WINNER : ', poney.name)
@@ -22,12 +33,8 @@ export class RaceComponent {
     })
   }
 
-  ponies: Poney[] = []
-
-  constructor(private dataService: DataService) {}
-
-  ngOnInit() {
-    this.ponies = this.dataService.ponies
-  }
+  constructor(
+    private dataService: DataService,
+    private route: ActivatedRoute) {}
 
 }
