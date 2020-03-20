@@ -1,0 +1,94 @@
+{
+  "ponies": [
+    {
+      "id": "0",
+      "name": "Romain",
+      "img": "http://ponyracer.ninja-squad.com/assets/images/pony-blue-running.gif",
+      "distance": 0
+    },
+    {
+      "id": "1",
+      "name": "Yohan",
+      "img": "http://ponyracer.ninja-squad.com/assets/images/pony-orange-running.gif",
+      "distance": 0
+    },
+    {
+      "id": "2",
+      "name": "Liam",
+      "img": "http://ponyracer.ninja-squad.com/assets/images/pony-green-running.gif",
+      "distance": 0
+    }
+  ],
+  "races": [
+    {
+      "id": "0",
+      "name": "St-Étienne",
+      "poneyIds": [
+        "0",
+        "1"
+      ]
+    },
+    {
+      "id": "1",
+      "name": "Nancy",
+      "poneyIds": [
+        "1",
+        "2"
+      ]
+    },
+    {
+      "name": "Brest",
+      "poneyIds": [
+        "0",
+        "1",
+        "2"
+      ],
+      "id": "Z8mhWDF"
+    },
+    {
+      "name": "Tokyo",
+      "poneyIds": [
+        "0",
+        "1",
+        "2"
+      ],
+      "id": "bowHPs2"
+    },
+    {
+      "name": "Marseille",
+      "poneyIds": [
+        "0",
+        "1",
+        "2"
+      ],
+      "id": "MruIZJs"
+    },
+    {
+      "name": "Toulouse",
+      "poneyIds": [
+        "0",
+        "1",
+        "2"
+      ],
+      "id": "eCFD5xM"
+    },
+    {
+      "name": "Clermont-Ferrand",
+      "poneyIds": [
+        "0",
+        "1",
+        "2"
+      ],
+      "id": "KQ4ZYZV"
+    },
+    {
+      "name": "Bordeaux",
+      "poneyIds": [
+        "0",
+        "1",
+        "2"
+      ],
+      "id": "XqE_QG5"
+    }
+  ]
+}

@@ -1,8 +1,9 @@
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Poney } from '../interfaces/poney';
 import { Race } from '../interfaces/race';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +11,23 @@ import { Observable, of } from 'rxjs';
 export class DataService {
 
   get ponies$(): Observable<Poney[]> {
-    return new Observable(observer => {
-      observer.next(this._ponies)
-      observer.complete()
-    })
+    if (this._ponies.length) {
+      return of(this._ponies)
+    } else {
+      return this.http.get<Poney[]>('http://localhost:3000/ponies').pipe(tap(ponies => {
+        this._ponies = ponies
+      }))
+    }
   }
 
   get races$(): Observable<Race[]> {
-    return of(this._races)
+    if (this._races.length) {
+      return of(this._races)
+    } else {
+      return this.http.get<Race[]>('http://localhost:3000/races').pipe(tap(races => {
+        this._races = races
+      }))
+    }
   }
 
   getRaceById(id: string): Observable<Race | undefined> {
@@ -26,37 +36,15 @@ export class DataService {
     }))
   }
 
-  private _ponies: Poney[] = [
-    {
-      id: '0',
-      name: 'Romain',
-      img: 'http://ponyracer.ninja-squad.com/assets/images/pony-blue-running.gif',
-      distance: 0
-    },
-    {
-      id: '1',
-      name: 'Yohan',
-      img: 'http://ponyracer.ninja-squad.com/assets/images/pony-orange-running.gif',
-      distance: 0
-    },
-    {
-      id: '2',
-      name: 'Liam',
-      img: 'http://ponyracer.ninja-squad.com/assets/images/pony-green-running.gif',
-      distance: 0
-    }
-  ]
+  saveRace(race: Race): Observable<Race> {
+    return this.http.post<Race>('http://localhost:3000/races', race).pipe(tap(race => {
+      this._races = []
+    }))
+  }
 
-  private _races: Race[] = [
-    {
-      id: '0',
-      name: 'St-Étienne',
-      poneyIds: ['0', '1']
-    },
-    {
-      id: '1',
-      name: 'Nancy',
-      poneyIds: ['1', '2']
-    }
-  ]
+  private _ponies: Poney[] = []
+
+  private _races: Race[] = []
+
+  constructor(private http: HttpClient) {}
 }

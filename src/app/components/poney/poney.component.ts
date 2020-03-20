@@ -39,5 +39,4 @@ export class PoneyComponent {
   stopRunning() {
     clearInterval(this.intervalId)
   }
-
 }

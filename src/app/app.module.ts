@@ -14,6 +14,8 @@ import { RaceCreateComponent } from './components/race-create/race-create.compon
 import { PoneyCreateComponent } from './components/poney-create/poney-create.component';
 import { RouterModule } from '@angular/router';
 import { APP_ROUTES } from './app.routes';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { APP_ROUTES } from './app.routes';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialComponentsModule,
-    RouterModule.forRoot(APP_ROUTES)
+    RouterModule.forRoot(APP_ROUTES),
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
