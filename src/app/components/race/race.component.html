@@ -1,16 +1,40 @@
-<mat-toolbar>
-    <span>{{ race.name }}</span>
-</mat-toolbar>
+<ng-container *ngIf="(race$ | async) as race">
+    <mat-toolbar>
+        <span>{{ race.name }}</span>
+    </mat-toolbar>
+    
+    <adi-poney 
+        *ngFor="let poney of ponies$ | async | isRacing:race.poneyIds; let i = index"
+        (win)="handleWin($event)"
+        [poney]="poney"
+        adiRainbow="lavender"
+        [isColored]="!(i % 2)"
+        #poneyChildren
+    ></adi-poney>
+    
+    <pre>
+        {{ ponies$ | async | json }}
+    </pre>
+</ng-container>
 
-<adi-poney 
-    *ngFor="let poney of ponies | isRacing:race.poneyIds; let i = index"
-    (win)="handleWin($event)"
-    [poney]="poney"
-    adiRainbow="lavender"
-    [isColored]="!(i % 2)"
-    #poneyChildren
-></adi-poney>
-
-<pre>
-    {{ ponies | json }}
-</pre>
+<!-- <ng-container *ngIf="{
+    race: race$ | async,
+    ponies: ponies$ | async
+} as data">
+    <mat-toolbar>
+        <span>{{ data.race.name }}</span>
+    </mat-toolbar>
+    
+    <adi-poney 
+        *ngFor="let poney of data.ponies | isRacing:data.race.poneyIds; let i = index"
+        (win)="handleWin($event)"
+        [poney]="poney"
+        adiRainbow="lavender"
+        [isColored]="!(i % 2)"
+        #poneyChildren
+    ></adi-poney>
+    
+    <pre>
+        {{ data.ponies | json }}
+    </pre>
+</ng-container> -->

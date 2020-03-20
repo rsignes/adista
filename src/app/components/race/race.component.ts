@@ -1,3 +1,5 @@
+import { map, flatMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Component, ViewChildren, QueryList } from '@angular/core';
 import { Poney } from '../../interfaces/poney';
 import { PoneyComponent } from '../poney/poney.component';
@@ -12,18 +14,14 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RaceComponent {
 
-  race: Race
-  ponies: Poney[] = []
+  race$: Observable<Race>
+  ponies$: Observable<Poney[]>
   @ViewChildren('poneyChildren') poneyChildren: QueryList<PoneyComponent>
 
   ngOnInit() {
-    this.ponies = this.dataService.ponies
+    this.ponies$ = this.dataService.ponies$
 
-    this.route.params.subscribe({
-      next: params => {
-        this.race = this.dataService.getRaceById(params.id)
-      }
-    })
+    this.race$ = this.route.params.pipe(flatMap(params => this.dataService.getRaceById(params.id)))
   }
 
   handleWin(poney: Poney) {
